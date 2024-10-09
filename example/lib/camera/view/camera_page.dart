@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,17 @@ class CameraView extends StatelessWidget {
     return BlocBuilder<CameraBloc, CameraState>(
       builder: (context, state) {
         // TODO: return correct widget based on the state.
-        return const SizedBox();
+        return Scaffold(
+          backgroundColor: Colors.green,
+          appBar: AppBar(
+            title: const Text('Camera Permission '),
+          ),
+          body: const Column(
+            children: [
+              Text('Ask for permission to use camera'),
+            ],
+          ),
+        );
       },
     );
   }

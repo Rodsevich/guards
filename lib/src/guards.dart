@@ -26,6 +26,9 @@ abstract class GuardBase {
   /// A key for identifying this guard in a key-value way
   String get guardIdentifier;
 
+  /// The path to redirect if the guard is not satisfied
+  String get redirectPath;
+
   /// The in-memory place for saving if the guard is granted or not. It should be updated with
   /// `update` method
   bool isSatisfied = false;

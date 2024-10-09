@@ -9,4 +9,7 @@ final class GuardLogin extends ExampleGuard {
     // If the access-token is valid and we are before due-date
     return Future.value(false);
   }
+  
+  @override
+  String get redirectPath => '/login';
 }
