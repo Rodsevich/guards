@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:guards/src/errors.dart';
 import 'package:guards/src/persistence_delegate.dart';
 
@@ -21,6 +23,8 @@ abstract class GuardBase {
 
   PersistenceDelegate? persistenceDelegate;
 
+  late StreamSink<GuardStatusChange> _reevaluateStream;
+
   /// Define the necessary for the guard to work. The return value should state
   /// whether the guard is satisfied or not according to that setup
   Future<bool> setUpAndInitializeGuard();
@@ -39,10 +43,18 @@ abstract class GuardBase {
   bool update({required bool isSatisfied}) {
     persistenceDelegate!.updateGuardStatus(guardIdentifier, isSatisfied);
     this.isSatisfied = isSatisfied;
+    _reevaluateStream.add(GuardStatusChange(this, isSatisfied));
     return isSatisfied;
   }
 
   //TODO(Nico): meter el hash, el call y el toString
+}
+
+class GuardStatusChange {
+  const GuardStatusChange(this.guard, this.isSatisfied);
+
+  final GuardBase guard;
+  final bool isSatisfied;
 }
 
 /// The guy in charge of your system-wide guards. Everything you should use for
@@ -55,6 +67,8 @@ abstract class Guards<T extends GuardBase> {
     required List<GuardBase> initialGuards,
   }) : guards = initialGuards;
 
+  static final _controller = StreamController<GuardStatusChange>();
+
   PersistenceDelegate persistenceDelegate;
 
   List<GuardBase> guards;
@@ -64,15 +78,20 @@ abstract class Guards<T extends GuardBase> {
   /// with `addGuard`
   Future<void> init() async {
     for (final guard in guards) {
-      guard.isSatisfied = await guard.setUpAndInitializeGuard();
+      guard.isSatisfied = await _setUpGuard(guard);
     }
+  }
+
+  Future<bool> _setUpGuard(GuardBase guard) {
+    guard._reevaluateStream = _controller.sink;
+    return guard.setUpAndInitializeGuard();
   }
 
   /// Call this when you are ready to add a guard that weren't able during
   /// bootstrap time.
   Future<void> addGuard(GuardBase guard) async {
     guard.persistenceDelegate ??= persistenceDelegate;
-    guard.isSatisfied = await guard.setUpAndInitializeGuard();
+    guard.isSatisfied = await _setUpGuard(guard);
     guards.add(guard);
   }
 
@@ -86,4 +105,7 @@ abstract class Guards<T extends GuardBase> {
     if (guard == null) throw NonExistentGuard(identifier);
     return guard as R;
   }
+
+  /// Define this in your App's routerConfig's reevaluateListenable
+  Stream<GuardStatusChange> get guardListenableStream => _controller.stream;
 }
