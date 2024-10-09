@@ -27,8 +27,10 @@ class SignInView extends StatelessWidget {
         return const Scaffold(
           backgroundColor: Colors.orange,
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Login - Sign in'),
+              ElevatedButton(onPressed: onPressed, child: Text('Sign in'))
             ],
           ),
         );

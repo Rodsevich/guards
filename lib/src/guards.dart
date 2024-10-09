@@ -17,7 +17,9 @@ import 'package:guards/src/persistence_delegate.dart';
 /// {@endtemplate}
 abstract class GuardBase {
   /// {@macro guards}
-  GuardBase();
+  GuardBase({required this.persistenceDelegate});
+
+  PersistenceDelegate? persistenceDelegate;
 
   /// Define the necessary for the guard to work. The return value should state
   /// whether the guard is satisfied or not according to that setup
@@ -35,7 +37,7 @@ abstract class GuardBase {
 
   ///
   bool update({required bool isSatisfied}) {
-    Guards._persistenceStrategy.updateGuardStatus(guardIdentifier, isSatisfied);
+    persistenceDelegate!.updateGuardStatus(guardIdentifier, isSatisfied);
     this.isSatisfied = isSatisfied;
     return isSatisfied;
   }
@@ -45,40 +47,43 @@ abstract class GuardBase {
 
 /// The guy in charge of your system-wide guards. Everything you should use for
 /// guards should be here
-class Guards {
-  static late PersistenceDelegate _persistenceStrategy;
+abstract class Guards<T extends GuardBase> {
+  /// The guy in charge of your system-wide guards. Everything you should use for
+  /// guards should be here
+  Guards({
+    required this.persistenceDelegate,
+    required List<GuardBase> initialGuards,
+  }) : guards = initialGuards;
 
-  static late List<GuardBase> guards;
+  PersistenceDelegate persistenceDelegate;
+
+  List<GuardBase> guards;
 
   /// Call this function in your project's bootstrap. Ensure the guards defined
   /// here contains all the necessary for being setup, otherwise add them later
   /// with `addGuard`
-  static Future<void> init({
-    required PersistenceDelegate persistenceStrategy,
-    required List<GuardBase> initialGuards,
-  }) async {
-    Guards._persistenceStrategy = persistenceStrategy;
-    Guards.guards = initialGuards;
-    for (final guard in Guards.guards) {
+  Future<void> init() async {
+    for (final guard in guards) {
       guard.isSatisfied = await guard.setUpAndInitializeGuard();
     }
   }
 
   /// Call this when you are ready to add a guard that weren't able during
   /// bootstrap time.
-  static Future<void> addGuard(GuardBase guard) async {
+  Future<void> addGuard(GuardBase guard) async {
+    guard.persistenceDelegate ??= persistenceDelegate;
     guard.isSatisfied = await guard.setUpAndInitializeGuard();
-    Guards.guards.add(guard);
+    guards.add(guard);
   }
 
-  /// The way of checking for guard statuses with the Guards system
-  bool operator [](GuardBase chosenGuard) {
+  /// The way of checking for a guard through its identifier
+  R getGuardByGuardIdentifier<R extends T>(String identifier) {
     final guard = guards
         .where(
-          (guard) => guard == chosenGuard,
+          (guard) => guard.guardIdentifier == identifier,
         )
         .singleOrNull;
-    if (guard == null) throw NonExistentGuard(chosenGuard.guardIdentifier);
-    return guard.isSatisfied;
+    if (guard == null) throw NonExistentGuard(identifier);
+    return guard as R;
   }
 }

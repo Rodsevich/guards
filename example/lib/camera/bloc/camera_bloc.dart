@@ -9,7 +9,7 @@ part 'camera_state.dart';
 class CameraBloc extends Bloc<CameraEvent, CameraState> {
   CameraBloc() : super(const CameraState()) {
     on<CameraEventGrantPermission>((event, emit) {
-      Guards[GuardCameraPermission() as GuardBase];
+      ExampleGuards[GuardCameraPermission() as GuardBase];
     });
   }
 }

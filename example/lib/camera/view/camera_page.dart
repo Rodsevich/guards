@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:guard_example/camera/camera.dart';
@@ -44,11 +43,13 @@ class CameraView extends StatelessWidget {
             children: [
               const Text('Ask for permission to use camera'),
               ElevatedButton(
-                  onPressed: blocGrantPermission,
-                  child: const Text('grant permission')),
+                onPressed: blocGrantPermission,
+                child: const Text('grant permission'),
+              ),
               ElevatedButton(
-                  onPressed: blocRevokePermission,
-                  child: const Text('revoke permission')),
+                onPressed: blocRevokePermission,
+                child: const Text('revoke permission'),
+              ),
             ],
           ),
         );

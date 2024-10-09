@@ -3,8 +3,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:guard_example/guards/example_guard.dart';
 import 'package:guards/guards.dart';
 import 'package:url_strategy/url_strategy.dart';
+
+late ExampleGuards guards;
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -29,8 +32,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  await Guards.init(
-    persistenceStrategy: InMemoryPersistenceStrategy(),
+  guards = ExampleGuards();
+
+  await guards.init(
+    persistenceDelegate: InMemorypersistenceDelegate(),
     initialGuards: [],
   );
 
@@ -38,7 +43,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runApp(await builder());
 }
 
-class InMemoryPersistenceStrategy extends PersistenceDelegate {
+class InMemorypersistenceDelegate extends PersistenceDelegate {
   final Map<String, bool> _memory = {};
 
   @override

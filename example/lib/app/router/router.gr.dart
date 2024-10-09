@@ -12,7 +12,7 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:guard_example/camera/view/camera_page.dart' as _i1;
 import 'package:guard_example/home/view/home_page.dart' as _i2;
 import 'package:guard_example/login/view/login_page.dart' as _i3;
-import 'package:guard_example/login/view/signin_page.dart' as _i4;
+import 'package:guard_example/login/signin/view/signin_page.dart' as _i4;
 
 /// generated route for
 /// [_i1.CameraPage]
