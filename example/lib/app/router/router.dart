@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:guard_example/app/router/router.gr.dart';
-import 'package:guard_example/bootstrap.dart';
-import 'package:guard_example/guards/base.dart';
 import 'package:guard_example/guards/example_guard.dart';
-import 'package:guard_example/login/login.dart';
 import 'package:guards/auto_route.dart';
 
 @AutoRouterConfig()
