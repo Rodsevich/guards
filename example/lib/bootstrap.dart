@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:guards/guards.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -28,9 +29,12 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  Guards.init(
-      persistenceStrategy: InMemoryPersistenceStrategy(), initialGuards: []);
+  await Guards.init(
+    persistenceStrategy: InMemoryPersistenceStrategy(),
+    initialGuards: [],
+  );
 
+  setPathUrlStrategy();
   runApp(await builder());
 }
 
