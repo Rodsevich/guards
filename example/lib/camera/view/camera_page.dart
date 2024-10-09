@@ -25,15 +25,30 @@ class CameraView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CameraBloc, CameraState>(
       builder: (context, state) {
-        // TODO: return correct widget based on the state.
+        blocGrantPermission() {
+          BlocProvider.of<CameraBloc>(context)
+              .add(CameraEventGrantPermission());
+        }
+
+        blocRevokePermission() {
+          BlocProvider.of<CameraBloc>(context)
+              .add(CameraEventRevokePermission());
+        }
+
         return Scaffold(
           backgroundColor: Colors.green,
           appBar: AppBar(
-            title: const Text('Camera Permission '),
+            title: const Text('Camera Permission'),
           ),
-          body: const Column(
+          body: Column(
             children: [
-              Text('Ask for permission to use camera'),
+              const Text('Ask for permission to use camera'),
+              ElevatedButton(
+                  onPressed: blocGrantPermission,
+                  child: const Text('grant permission')),
+              ElevatedButton(
+                  onPressed: blocRevokePermission,
+                  child: const Text('revoke permission')),
             ],
           ),
         );

@@ -5,7 +5,7 @@ final class GuardCameraPermission extends ExampleGuard {
   String get guardIdentifier => 'camera';
 
   @override
-  String get redirectPath => '/login';
+  String get redirectPath => '/permissions/camera';
 
   @override
   Future<bool> setUpAndInitializeGuard() {

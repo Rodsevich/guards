@@ -18,7 +18,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: CameraRoute.page,
-          path: '/camera',
+          path: '/permission/camera',
           guards: [GuardCameraPermission().toAutoRouteGuard()],
         ),
       ];

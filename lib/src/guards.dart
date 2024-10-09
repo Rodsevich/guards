@@ -72,13 +72,13 @@ class Guards {
   }
 
   /// The way of checking for guard statuses with the Guards system
-  bool operator [](String guardIdentifier) {
+  bool operator [](GuardBase chosenGuard) {
     final guard = guards
         .where(
-          (guard) => guard.guardIdentifier == guardIdentifier,
+          (guard) => guard == chosenGuard,
         )
         .singleOrNull;
-    if (guard == null) throw NonExistentGuard(guardIdentifier);
+    if (guard == null) throw NonExistentGuard(chosenGuard.guardIdentifier);
     return guard.isSatisfied;
   }
 }
