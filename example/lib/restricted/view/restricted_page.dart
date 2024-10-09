@@ -26,12 +26,12 @@ class RestrictedView extends StatelessWidget {
     return BlocBuilder<RestrictedBloc, RestrictedState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.green,
           appBar: AppBar(
             title: const Text('Restricted content'),
           ),
           body: const Center(
-            child: Text('Congratulations, you can see restricted content'),
+            child: Text('Congratulations! you can see restricted content'),
           ),
         );
       },
