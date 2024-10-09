@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:guard_example/app/router/router.gr.dart';
 import 'package:guard_example/guards/camera.dart';
+import 'package:guards/auto_route.dart';
 import 'package:guards/guards.dart';
 
 @AutoRouterConfig()
