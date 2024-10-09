@@ -9,7 +9,7 @@ import 'package:guard_example/guards/login.dart';
 import 'package:guards/guards.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-late ExampleGuards guards;
+late ExampleGuards exampleGuards;
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -34,19 +34,19 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = const AppBlocObserver();
 
-  guards = ExampleGuards(
+  exampleGuards = ExampleGuards(
     persistenceDelegate: InMemorypersistenceDelegate(),
     initialGuards: [GuardCameraPermission(), GuardLogin()],
   );
 
-  await guards.init();
+  await exampleGuards.init();
 
   setPathUrlStrategy();
   runApp(await builder());
 }
 
 class InMemorypersistenceDelegate extends PersistenceDelegate {
-  final Map<String, bool> _memory = {};
+  static final Map<String, bool> _memory = {};
 
   @override
   Future<bool> checkGuardStatus(String guardName) async {

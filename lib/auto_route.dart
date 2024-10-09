@@ -8,6 +8,18 @@ import 'package:guards/guards.dart';
 extension AutoRouteExtensionGuardBase on GuardBase {
   /// Converts your project's guard into an auto_route guard
   AutoRouteGuard toAutoRouteGuard() {
-    return AutoRouteGuard.redirectPath((_) => redirectPath);
+
+    return AutoRouteGuard.redirectPath(
+      (navResolver) {
+        print('isSatisfied: $isSatisfied');
+        if (isSatisfied) {
+          // null means guard is satisfied and navigation should continue
+          return null;
+        } else {
+          print('Redirecting to $guardIdentifier');
+          return redirectPath;
+        }
+      },
+    );
   }
 }

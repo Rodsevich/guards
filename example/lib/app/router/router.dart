@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:guard_example/app/router/router.gr.dart';
-import 'package:guard_example/guards/camera.dart';
+import 'package:guard_example/bootstrap.dart';
 import 'package:guards/auto_route.dart';
-import 'package:guards/guards.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -18,12 +17,23 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: CameraRoute.page,
-          path: '/permission/camera',
-          guards: [GuardCameraPermission().toAutoRouteGuard()],
+          path: '/permissions/camera',
+          guards: [
+            exampleGuards.login.toAutoRouteGuard(),
+          ],
+        ),
+        AutoRoute(
+          page: RestrictedRoute.page,
+          guards: [
+            exampleGuards.login.toAutoRouteGuard(),
+            exampleGuards.camera.toAutoRouteGuard(),
+          ],
         ),
       ];
 
   @override
-  List<AutoRouteGuard> get guards =>
-      Guards.guards.map((g) => g.toAutoRouteGuard()).toList();
+  List<AutoRouteGuard> get guards => [
+        // exampleGuards.login.toAutoRouteGuard(),
+        // exampleGuards.camera.toAutoRouteGuard(),
+      ];
 }
