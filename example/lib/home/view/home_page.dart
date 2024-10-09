@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:guard_example/app/router/router.gr.dart';
 import 'package:guard_example/home/home.dart';
 
 @RoutePage()
@@ -16,8 +18,15 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +36,28 @@ class HomeView extends StatelessWidget {
           backgroundColor: Colors.blue,
           appBar: AppBar(
             title: const Text('Home'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Home state: ${state.runtimeType}'),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    context.router.push(const LoginRoute());
+                  },
+                  child: const Text('Ir a Login'),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    context.router.push(const CameraRoute());
+                  },
+                  child: const Text('Ir a CameraPermission'),
+                ),
+              ],
+            ),
           ),
         );
       },

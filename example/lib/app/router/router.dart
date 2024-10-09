@@ -1,10 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:guard_example/app/router/router.gr.dart';
 import 'package:guard_example/bootstrap.dart';
+import 'package:guard_example/guards/base.dart';
+import 'package:guard_example/guards/example_guard.dart';
+import 'package:guard_example/login/login.dart';
 import 'package:guards/auto_route.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+
+  AppRouter(this.exampleGuards);
+
+  final ExampleGuards exampleGuards;
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: HomeRoute.page, initial: true),
@@ -13,6 +21,7 @@ class AppRouter extends RootStackRouter {
           path: '/login',
           children: [
             AutoRoute(page: SignInRoute.page, path: 'signin'),
+            AutoRoute(page: SignoutRoute.page, path: 'signout'),
           ],
         ),
         AutoRoute(
@@ -24,6 +33,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: RestrictedRoute.page,
+          path: '/restricted',
           guards: [
             exampleGuards.login.toAutoRouteGuard(),
             exampleGuards.camera.toAutoRouteGuard(),

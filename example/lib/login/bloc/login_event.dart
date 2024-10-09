@@ -10,3 +10,8 @@ sealed class LoginEvent extends Equatable {
 final class LoginEventSignIn extends LoginEvent {
   const LoginEventSignIn();
 }
+
+
+final class LoginEventSignOut extends LoginEvent {
+  const LoginEventSignOut();
+}
