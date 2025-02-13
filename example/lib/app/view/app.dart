@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
+    final appRouter = AppRouter(exampleGuards);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
