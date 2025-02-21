@@ -5,7 +5,6 @@ import 'package:guards/auto_route.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-
   AppRouter(this.exampleGuards);
 
   final ExampleGuards exampleGuards;
@@ -15,6 +14,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: HomeRoute.page, initial: true),
         AutoRoute(
           page: LoginRoute.page,
+          //TODO(Lucas): cambia los paths a un static const en los pages en todos lados
           path: '/login',
           children: [
             AutoRoute(page: SignInRoute.page, path: 'signin'),

@@ -9,6 +9,8 @@ import 'package:guard_example/home/home.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  static const String path = 'home';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,8 +28,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
