@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:guards/src/errors.dart';
-import 'package:guards/src/persistence_delegate.dart';
+import 'package:guards/src/delegates/persistence_delegate.dart';
 
 /// {@template guard}
 /// The parent class for every guard of your guard system.

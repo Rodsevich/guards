@@ -3,5 +3,5 @@ library;
 
 export 'src/annotations.dart';
 export 'src/errors.dart';
-export 'src/guards.dart';
-export 'src/persistence_delegate.dart';
+export 'src/common_guards/guards.dart';
+export 'src/delegates/persistence_delegate.dart';
