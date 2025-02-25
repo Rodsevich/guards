@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:guards/src/errors.dart';
 import 'package:guards/src/delegates/persistence_delegate.dart';
+import 'package:guards/src/errors.dart';
 
 /// {@template guard}
 /// The parent class for every guard of your guard system.
@@ -64,14 +64,14 @@ abstract class Guards<T extends GuardBase> {
   /// guards should be here
   Guards({
     required this.persistenceDelegate,
-    required List<GuardBase> initialGuards,
+    required List<T> initialGuards,
   }) : guards = initialGuards;
 
   static final _controller = StreamController<GuardStatusChange>();
 
   PersistenceDelegate persistenceDelegate;
 
-  List<GuardBase> guards;
+  List<T> guards;
 
   /// Call this function in your project's bootstrap. Ensure the guards defined
   /// here contains all the necessary for being setup, otherwise add them later
@@ -89,7 +89,7 @@ abstract class Guards<T extends GuardBase> {
 
   /// Call this when you are ready to add a guard that weren't able during
   /// bootstrap time.
-  Future<void> addGuard(GuardBase guard) async {
+  Future<void> addGuard(T guard) async {
     guard.persistenceDelegate ??= persistenceDelegate;
     guard.isSatisfied = await _setUpGuard(guard);
     guards.add(guard);
