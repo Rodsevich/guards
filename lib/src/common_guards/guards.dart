@@ -20,7 +20,7 @@ import 'package:guards/src/errors.dart';
 abstract class GuardBase {
   /// {@macro guards}
   GuardBase({required this.persistenceDelegate});
-
+  /// The delegate that will be used for checking the guards
   PersistenceDelegate? persistenceDelegate;
 
   late StreamSink<GuardStatusChange> _reevaluateStream;
@@ -50,7 +50,11 @@ abstract class GuardBase {
   //TODO(Nico): meter el hash, el call y el toString
 }
 
+///{@template guard_status_change}
+/// The event that will be emitted when a guard status changes
+/// {@endtemplate}
 class GuardStatusChange {
+  ///{@macro guard_status_change}
   const GuardStatusChange(this.guard, this.isSatisfied);
 
   final GuardBase guard;
@@ -68,9 +72,9 @@ abstract class Guards<T extends GuardBase> {
   }) : guards = initialGuards;
 
   static final _controller = StreamController<GuardStatusChange>();
-
+  /// The delegate that will be used for checking the guards
   PersistenceDelegate persistenceDelegate;
-
+  /// The list of guards that will be checked for the system
   List<T> guards;
 
   /// Call this function in your project's bootstrap. Ensure the guards defined
