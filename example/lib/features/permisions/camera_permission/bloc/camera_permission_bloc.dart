@@ -8,12 +8,14 @@ part 'camera_permission_state.dart';
 class CameraPermissionBloc
     extends Bloc<CameraPermissionEvent, CameraPermissionState> {
   CameraPermissionBloc() : super(const CameraPermissionState()) {
-    on<CameraPermissionEventGrantPermission>((event, emit) {
-      exampleGuards.camera.update(isSatisfied: true);
+    on<CameraPermissionEventGrantPermission>((event, emit) async {
+      await exampleGuards.camera.update(isSatisfied: true);
+      emit(const CameraPermissionState());
       emit(const CameraPermissionStateGranted());
     });
-    on<CameraPermissionEventRevokePermission>((event, emit) {
-      exampleGuards.camera.update(isSatisfied: false);
+    on<CameraPermissionEventRevokePermission>((event, emit) async{
+      await exampleGuards.camera.update(isSatisfied: false);
+      emit(const CameraPermissionState());
       emit(const CameraPermissionStateRevoked());
     });
   }

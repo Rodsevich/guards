@@ -35,44 +35,46 @@ class CameraPermissionView extends StatelessWidget {
         listener: (context, state) async{
           switch (state) {
             case CameraPermissionStateGranted():
-              await context.router.pushNamed(TakePhotoPage.path);
+              await context.router.replaceNamed(TakePhotoPage.path);
             case CameraPermissionStateRevoked():
-             await context.router.pushNamed(HomePage.path);
+             await context.router.replaceNamed(HomePage.path);
           }
         },
         child: BlocBuilder<CameraPermissionBloc, CameraPermissionState>(
           builder: (context, state) {
             return Padding(
               padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Ask for permission to use camera',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<CameraPermissionBloc>()
-                          .add(CameraPermissionEventGrantPermission());
-                    },
-                    child: const Text('Grant Permission'),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<CameraPermissionBloc>()
-                          .add(CameraPermissionEventRevokePermission());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+              child: Align(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Ask for permission to use camera',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    child: const Text('Revoke Permission'),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<CameraPermissionBloc>()
+                            .add(CameraPermissionEventGrantPermission());
+                      },
+                      child: const Text('Grant Permission'),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<CameraPermissionBloc>()
+                            .add(CameraPermissionEventRevokePermission());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                      ),
+                      child: const Text('Revoke Permission'),
+                    ),
+                  ],
+                ),
               ),
             );
           },

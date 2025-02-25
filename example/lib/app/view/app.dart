@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/app/router/router.dart';
 import 'package:guard_example/bootstrap.dart';
-import 'package:guard_example/features/login/bloc/login_bloc.dart';
+import 'package:guard_example/features/login/login.dart';
+import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
 import 'package:guard_example/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -13,25 +14,29 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = AppRouter(exampleGuards);
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => LoginBloc(),
+        providers: [
+            BlocProvider(
+          create: (context) => LoginBloc(),
+    
         ),
-      ],
-      child: MaterialApp.router(
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            BlocProvider(
+                create: (context) => CameraPermissionBloc(),
+            ),
+        ],
+              child: MaterialApp.router(
+            theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              useMaterial3: true,
+            ),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerConfig: appRouter.config(
+              reevaluateListenable:
+                  ReevaluateListenable.stream(exampleGuards.guardListenableStream),
+            ),
           ),
-          useMaterial3: true,
-        ),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        routerConfig: appRouter.config(
-          reevaluateListenable:
-              ReevaluateListenable.stream(exampleGuards.guardListenableStream),
-        ),
-      ),
     );
   }
 }

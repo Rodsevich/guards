@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:guard_example/app/router/router.gr.dart';
 import 'package:guard_example/features/home/view/home_page.dart';
 
 import 'package:guard_example/features/take_photo/bloc/take_photo_bloc.dart';

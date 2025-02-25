@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/features/home/home.dart';
+import 'package:guard_example/features/login/login.dart';
 import 'package:guard_example/features/permisions/camera_permission/bloc/camera_permission_bloc.dart';
 import 'package:guard_example/features/take_photo/view/take_photo_page.dart';
 
@@ -76,7 +77,19 @@ class _HomeViewState extends State<HomeView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                       ),
-                      child: const Text('Revoke Permission'),
+                      child: const Text('Revoke Permission Camera'),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<LoginBloc>()
+                            .add(const LoginEventSignOut());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                      ),
+                      child: const Text('Logout'),
                     ),
                   ],
                 ),

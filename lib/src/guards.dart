@@ -40,8 +40,8 @@ abstract class GuardBase {
   bool isSatisfied = false;
 
   ///
-  bool update({required bool isSatisfied}) {
-    persistenceDelegate!.updateGuardStatus(guardIdentifier, isSatisfied);
+  Future<bool> update({required bool isSatisfied}) async {
+    await persistenceDelegate!.updateGuardStatus(guardIdentifier, isSatisfied);
     this.isSatisfied = isSatisfied;
     _reevaluateStream.add(GuardStatusChange(this, isSatisfied));
     return isSatisfied;
