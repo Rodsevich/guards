@@ -1,5 +1,5 @@
 
-import 'package:guard_example/core/guards/login_guard.dart';
+import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
 
@@ -17,6 +17,6 @@ mixin _$ExampleGuards on Guards<GuardBase> {
             .guardIdentifier,
       );
   LoginGuard get login => getGuardByGuardIdentifier(
-        LoginGuard().guardIdentifier,
+        LoginGuard(loginPath: LoginPage.path).guardIdentifier,
       );
 }

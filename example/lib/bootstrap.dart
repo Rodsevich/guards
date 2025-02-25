@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:guard_example/core/guards/example_guard.dart';
-import 'package:guard_example/core/guards/login_guard.dart';
+import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -38,7 +38,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     persistenceDelegate: InMemorypersistenceDelegate(),
     initialGuards: [
       CameraGuard(cameraPermissionPath: CameraPermissionPage.path),
-      LoginGuard(),
+      LoginGuard(loginPath: LoginPage.path),
     ],
   );
 

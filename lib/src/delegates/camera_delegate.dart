@@ -1,6 +1,8 @@
 import 'package:guards/src/delegates/persistence_delegate.dart';
 
-/// Handles camera-specific persistence operations.
+///{@template camera_persistence_delegate}
+/// A mock of a custom delegate that mocks a camera permission.
+/// {@endtemplate}
 class CameraPersistenceDelegate extends PersistenceDelegate {
   static bool _hasPermission = false;
 
