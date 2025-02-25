@@ -23,7 +23,6 @@ void main() {
 // vuelvo a sacar foto
 // home -> sacar foto (esta vez no falla ninguna guarda y puedo sacar la foto bien)
 
-
 // plan de accion:
 // - mejorar ejemplo
 // - crear guardas y delegates en paquete

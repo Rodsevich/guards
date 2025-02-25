@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/app/router/router.dart';
 import 'package:guard_example/bootstrap.dart';
+import 'package:guard_example/features/login/bloc/login_bloc.dart';
 import 'package:guard_example/l10n/l10n.dart';
-import 'package:guard_example/login/bloc/login_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
