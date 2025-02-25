@@ -1,4 +1,5 @@
 import 'package:guard_example/core/guards/base.dart';
+import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
 
 final class CameraGuard extends ExampleGuard {
@@ -8,11 +9,10 @@ final class CameraGuard extends ExampleGuard {
   String get guardIdentifier => 'camera';
 
   @override
-  String get redirectPath => '/permission/camera';
+  String get redirectPath => CameraPermissionPage.path;
 
   @override
   Future<bool> setUpAndInitializeGuard() {
-    // Aquí puedes reemplazar con una verificación real, por ejemplo:
     // return DevicePermissions.hasCameraAccess();
     return Future.value(false);
   }

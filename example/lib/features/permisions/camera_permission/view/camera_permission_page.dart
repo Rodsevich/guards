@@ -2,12 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/app/router/router.gr.dart';
+import 'package:guard_example/features/home/view/home_page.dart';
 
 import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
+import 'package:guard_example/features/take_photo/view/take_photo_page.dart';
 
 @RoutePage()
 class CameraPermissionPage extends StatelessWidget {
   const CameraPermissionPage({super.key});
+
+  static const String path = '/permissions/camera';
 
   @override
   Widget build(BuildContext context) {
@@ -27,44 +31,52 @@ class CameraPermissionView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Camera Permission'),
       ),
-      body: BlocBuilder<CameraPermissionBloc, CameraPermissionState>(
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Ask for permission to use camera',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<CameraPermissionBloc>()
-                        .add(CameraPermissionEventGrantPermission());
-                    context.router.push(const TakePhotoRoute());
-                  },
-                  child: const Text('Grant Permission'),
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<CameraPermissionBloc>()
-                        .add(CameraPermissionEventRevokePermission());
-                    context.router.push(const HomeRoute());
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                  child: const Text('Revoke Permission'),
-                ),
-              ],
-            ),
-          );
+      body: BlocListener<CameraPermissionBloc, CameraPermissionState>(
+        listener: (context, state) async{
+          switch (state) {
+            case CameraPermissionStateGranted():
+              await context.router.pushNamed(TakePhotoPage.path);
+            case CameraPermissionStateRevoked():
+             await context.router.pushNamed(HomePage.path);
+          }
         },
+        child: BlocBuilder<CameraPermissionBloc, CameraPermissionState>(
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Ask for permission to use camera',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<CameraPermissionBloc>()
+                          .add(CameraPermissionEventGrantPermission());
+                    },
+                    child: const Text('Grant Permission'),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<CameraPermissionBloc>()
+                          .add(CameraPermissionEventRevokePermission());
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
+                    child: const Text('Revoke Permission'),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

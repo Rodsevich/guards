@@ -6,3 +6,5 @@ sealed class TakePhotoEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+ 
+final class TakePhotoEventGoHome extends TakePhotoEvent {}

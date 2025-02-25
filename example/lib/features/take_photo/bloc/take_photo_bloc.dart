@@ -5,5 +5,9 @@ part 'take_photo_event.dart';
 part 'take_photo_state.dart';
 
 class TakePhotoBloc extends Bloc<TakePhotoEvent, TakePhotoState> {
-  TakePhotoBloc() : super(const TakePhotoState());
+  TakePhotoBloc() : super(const TakePhotoState()) {
+    on<TakePhotoEventGoHome>((event, emit) {
+      emit(const TakePhotoStateGoHomeButtonTapped());
+    });
+  }
 }

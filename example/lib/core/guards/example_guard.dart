@@ -12,6 +12,6 @@ class ExampleGuards extends Guards<ExampleGuard> with _$ExampleGuards {
 
 // TODO(Nico): exatraer a un generador
 mixin _$ExampleGuards on Guards<ExampleGuard> {
-  CameraGuard get camera => getGuardByGuardIdentifier('camera');
-  LoginGuard get login => getGuardByGuardIdentifier('login');
+  CameraGuard get camera => getGuardByGuardIdentifier(CameraGuard().guardIdentifier);
+  LoginGuard get login => getGuardByGuardIdentifier(LoginGuard().guardIdentifier);
 }

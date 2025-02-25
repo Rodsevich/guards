@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:guard_example/core/guards/base.dart';
+import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guards/guards.dart';
 
 final class LoginGuard extends ExampleGuard {
@@ -16,7 +17,7 @@ final class LoginGuard extends ExampleGuard {
   }
 
   @override
-  String get redirectPath => '/login';
+  String get redirectPath => LoginPage.path;
 }
 
 /// A mock of a custom delegate that mocks a JWT creation when login is

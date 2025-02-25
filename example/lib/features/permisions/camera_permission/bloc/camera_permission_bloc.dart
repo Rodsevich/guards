@@ -10,9 +10,11 @@ class CameraPermissionBloc
   CameraPermissionBloc() : super(const CameraPermissionState()) {
     on<CameraPermissionEventGrantPermission>((event, emit) {
       exampleGuards.camera.update(isSatisfied: true);
+      emit(const CameraPermissionStateGranted());
     });
     on<CameraPermissionEventRevokePermission>((event, emit) {
       exampleGuards.camera.update(isSatisfied: false);
+      emit(const CameraPermissionStateRevoked());
     });
   }
 }

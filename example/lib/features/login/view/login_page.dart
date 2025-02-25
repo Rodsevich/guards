@@ -9,6 +9,8 @@ import 'package:guard_example/features/login/login.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  static const String path = '/login';
+
   @override
   Widget build(BuildContext context) {
     return const LoginView();

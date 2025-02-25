@@ -8,6 +8,8 @@ import 'package:guard_example/features/login/signout/signout.dart';
 class SignoutPage extends StatelessWidget {
   const SignoutPage({super.key});
 
+  static const String path = 'signout';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
