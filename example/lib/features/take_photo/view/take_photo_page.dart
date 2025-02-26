@@ -31,7 +31,7 @@ class TakePhotoView extends StatelessWidget {
         listener: (context, state) async {
           switch (state) {
             case TakePhotoStateGoHomeButtonTapped():
-              await context.router.navigateNamed(HomePage.path);
+              await context.router.replaceNamed(HomePage.path);
           }
         },
         child: BlocBuilder<TakePhotoBloc, TakePhotoState>(

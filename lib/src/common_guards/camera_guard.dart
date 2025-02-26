@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:guards/guards.dart';
 import 'package:guards/src/delegates/camera_delegate.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:universal_html/html.dart' as html;
 
 ///{@template camera_guard}
 /// A guard that checks if the camera permission is granted.

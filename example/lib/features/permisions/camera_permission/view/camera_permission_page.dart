@@ -32,12 +32,11 @@ class CameraPermissionView extends StatelessWidget {
         title: const Text('Camera Permission'),
       ),
       body: BlocListener<CameraPermissionBloc, CameraPermissionState>(
-        listener: (context, state) async{
+        listener: (context, state) async {
           switch (state) {
-            case CameraPermissionStateGranted():
-              await context.router.replaceNamed(TakePhotoPage.path);
-            case CameraPermissionStateRevoked():
-             await context.router.replaceNamed(HomePage.path);
+            case CameraPermissionStateGranted() ||
+                  CameraPermissionStateRevoked():
+              await context.router.maybePop();
           }
         },
         child: BlocBuilder<CameraPermissionBloc, CameraPermissionState>(
@@ -50,7 +49,8 @@ class CameraPermissionView extends StatelessWidget {
                   children: [
                     const Text(
                       'Ask for permission to use camera',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
