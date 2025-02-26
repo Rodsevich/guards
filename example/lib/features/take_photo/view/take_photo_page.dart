@@ -28,10 +28,10 @@ class TakePhotoView extends StatelessWidget {
     return PopScope(
       canPop: false,
       child: BlocListener<TakePhotoBloc, TakePhotoState>(
-        listener: (context, state) async{
-          switch (state) { 
+        listener: (context, state) async {
+          switch (state) {
             case TakePhotoStateGoHomeButtonTapped():
-              await context.router.pushNamed(HomePage.path);
+              await context.router.navigateNamed(HomePage.path);
           }
         },
         child: BlocBuilder<TakePhotoBloc, TakePhotoState>(

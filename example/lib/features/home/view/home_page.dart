@@ -39,10 +39,10 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomeBloc, HomeState>(
-      listener: (context, state) async{
+      listener: (context, state) async {
         switch (state) {
           case TakePhotoNavigationState():
-            await context.router.pushNamed(TakePhotoPage.path);
+            await context.router.navigateNamed(TakePhotoPage.path);
         }
       },
       child: BlocBuilder<HomeBloc, HomeState>(

@@ -31,9 +31,9 @@ class SignInView extends StatelessWidget {
       listener: (context, state) async {
         switch (state) {
           case LoginStateAuthenticated():
-            await context.router.pushNamed(TakePhotoPage.path);
+            await context.router.navigateNamed(TakePhotoPage.path);
           case LoginStateUnauthenticated():
-            await context.router.pushNamed(HomePage.path);
+            await context.router.navigateNamed(HomePage.path);
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
