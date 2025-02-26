@@ -18,8 +18,9 @@ final class CameraGuard extends GuardBase {
     required this.cameraPermissionPath,
     CameraPersistenceDelegate? persistenceDelegate,
   }) : super(
-            persistenceDelegate:
-                persistenceDelegate ?? CameraPersistenceDelegate(),);
+          persistenceDelegate:
+              persistenceDelegate ?? CameraPersistenceDelegate(),
+        );
 
   /// The path to redirect if the camera permission is not granted.
   final String cameraPermissionPath;
@@ -36,23 +37,15 @@ final class CameraGuard extends GuardBase {
   Future<bool> setUpAndInitializeGuard() async {
     final hasPermission = await checkCameraPermission();
     await persistenceDelegate?.updateGuardStatus(
-        guardIdentifier, hasPermission,);
+      guardIdentifier,
+      hasPermission,
+    );
     return hasPermission;
   }
 }
 
 /// Checks if the camera permission is granted.
 Future<bool> checkCameraPermission() async {
-  if (kIsWeb) {
-    try {
-      /// Checks if the camera is accessible.
-      await html.window.navigator.getUserMedia(video: true);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  } else {
-    final status = await Permission.camera.status;
-    return status.isGranted;
-  }
+  final status = await Permission.camera.status;
+  return status.isGranted;
 }

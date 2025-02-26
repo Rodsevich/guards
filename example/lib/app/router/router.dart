@@ -32,8 +32,8 @@ class AppRouter extends RootStackRouter {
           page: TakePhotoRoute.page,
           path: TakePhotoPage.path,
           guards: [
-            exampleGuards.login.toAutoRouteGuard(),
             exampleGuards.camera.toAutoRouteGuard(),
+            exampleGuards.login.toAutoRouteGuard(),
           ],
         ),
       ];
