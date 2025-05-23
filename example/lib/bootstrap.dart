@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:guard_example/guards/camera.dart';
-import 'package:guard_example/guards/example_guard.dart';
-import 'package:guard_example/guards/login.dart';
+import 'package:guard_example/core/guards/example_guard.dart';
+import 'package:guard_example/features/login/view/login_page.dart';
+import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -28,6 +28,7 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -36,7 +37,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   exampleGuards = ExampleGuards(
     persistenceDelegate: InMemorypersistenceDelegate(),
-    initialGuards: [GuardCameraPermission(), GuardLogin()],
+    initialGuards: [
+      CameraGuard(cameraPermissionPath: CameraPermissionPage.path),
+      LoginGuard(loginPath: LoginPage.path),
+    ],
   );
 
   await exampleGuards.init();
