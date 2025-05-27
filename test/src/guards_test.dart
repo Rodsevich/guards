@@ -1,18 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guards/guards.dart';
 import 'package:guards/src/core/guards.dart';
 import 'package:mocktail/mocktail.dart';
 
 class TestGuards extends Guards {
-  TestGuards()
-      : super(
-          persistenceDelegate: null,
-          initialGuards: [],
-        );
+  TestGuards() : super(persistenceDelegate: null, initialGuards: []);
 }
 
 class MockCameraGuard extends Mock implements CameraGuard {}

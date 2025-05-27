@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:guard_example/features/home/view/home_page.dart';
 import 'package:guard_example/features/login/login.dart';
-import 'package:guard_example/features/take_photo/view/take_photo_page.dart';
 
 @RoutePage()
 class SignInPage extends StatelessWidget {
@@ -14,9 +12,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign in'),
-      ),
+      appBar: AppBar(title: const Text('Sign in')),
       body: const SignInView(),
     );
   }
@@ -46,9 +42,9 @@ class SignInView extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (state is LoginStateAuthenticated) {
-                        context
-                            .read<LoginBloc>()
-                            .add(const LoginEventSignOut());
+                        context.read<LoginBloc>().add(
+                          const LoginEventSignOut(),
+                        );
                       } else {
                         context.read<LoginBloc>().add(const LoginEventSignIn());
                       }

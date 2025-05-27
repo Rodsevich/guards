@@ -1,6 +1,4 @@
 import 'package:guard_example/core/guards/photographer_pass_guard.dart';
-import 'package:guard_example/features/login/view/login_page.dart';
-import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
 
 class ExampleGuards extends Guards<GuardBase> with _$ExampleGuards {

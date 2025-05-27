@@ -1,15 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:guard_example/app/router/router.gr.dart';
-import 'package:guard_example/features/home/view/home_page.dart';
 
 import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
-import 'package:guard_example/features/take_photo/view/take_photo_page.dart';
+import 'package:guards/auto_route.dart';
 
 @RoutePage()
-class CameraPermissionPage extends StatelessWidget {
-  const CameraPermissionPage({super.key});
+class CameraPermissionPage extends AutoRouteGuardSatisfyingPage {
+  const CameraPermissionPage({super.key, required super.guardCallback});
 
   static const String path = '/permissions/camera';
 
@@ -28,14 +26,12 @@ class CameraPermissionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Camera Permission'),
-      ),
+      appBar: AppBar(title: const Text('Camera Permission')),
       body: BlocListener<CameraPermissionBloc, CameraPermissionState>(
         listener: (context, state) async {
           switch (state) {
             case CameraPermissionStateGranted() ||
-                  CameraPermissionStateRevoked():
+                CameraPermissionStateRevoked():
               await context.router.maybePop();
           }
         },
@@ -49,24 +45,26 @@ class CameraPermissionView extends StatelessWidget {
                   children: [
                     const Text(
                       'Ask for permission to use camera',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        context
-                            .read<CameraPermissionBloc>()
-                            .add(CameraPermissionEventGrantPermission());
+                        context.read<CameraPermissionBloc>().add(
+                          CameraPermissionEventGrantPermission(),
+                        );
                       },
                       child: const Text('Grant Permission'),
                     ),
                     const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
-                        context
-                            .read<CameraPermissionBloc>()
-                            .add(CameraPermissionEventRevokePermission());
+                        context.read<CameraPermissionBloc>().add(
+                          CameraPermissionEventRevokePermission(),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,

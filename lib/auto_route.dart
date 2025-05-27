@@ -35,13 +35,13 @@ typedef GuardedRouteGeneratingFunction<T extends PageRouteInfo> =
     T Function(GuardCallback guardCallback);
 
 final class GuardsAutoRouteGuard extends AutoRouteGuard {
-  GuardsAutoRouteGuard(this.guard, this.redirect);
+  GuardsAutoRouteGuard(this.guard, this.redirectRoute);
 
   final GuardBase guard;
 
   /// The PageInfo that will be used to redirect the user
   /// when the guard is not satisfied.
-  final GuardedRouteGeneratingFunction redirect;
+  final GuardedRouteGeneratingFunction redirectRoute;
 
   @override
   Future<void> onNavigation(
@@ -53,19 +53,7 @@ final class GuardsAutoRouteGuard extends AutoRouteGuard {
       resolver.next(true);
     } else {
       await resolver.redirectUntil(
-        // NamedRoute(guard.redirectPath,
-        //     //TODO(Nico): ver si dejar esto o no
-        //     args: {
-        //       'guardCallback': (bool isSatisfied) async {
-        //         if (isSatisfied) {
-        //           await guard.update(isSatisfied: true);
-        //           resolver.next(true);
-        //         } else {
-        //           resolver.next(false);
-        //         }
-        //       }
-        //     }
-        redirect(({required bool isSatisfied}) async {
+        redirectRoute(({required bool isSatisfied}) async {
           if (isSatisfied) {
             await guard.update(isSatisfied: true);
             resolver.next(true);

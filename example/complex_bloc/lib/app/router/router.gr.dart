@@ -25,25 +25,63 @@ import 'package:guards/auto_route.dart' as _i9;
 
 /// generated route for
 /// [_i1.CameraPermissionPage]
-class CameraPermissionRoute extends _i7.PageRouteInfo<void> {
-  const CameraPermissionRoute({List<_i7.PageRouteInfo>? children})
-      : super(CameraPermissionRoute.name, initialChildren: children);
+class CameraPermissionRoute
+    extends _i7.PageRouteInfo<CameraPermissionRouteArgs> {
+  CameraPermissionRoute({
+    _i8.Key? key,
+    required _i9.GuardCallback guardCallback,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+         CameraPermissionRoute.name,
+         args: CameraPermissionRouteArgs(
+           key: key,
+           guardCallback: guardCallback,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'CameraPermissionRoute';
 
   static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i1.CameraPermissionPage();
+      final args = data.argsAs<CameraPermissionRouteArgs>();
+      return _i1.CameraPermissionPage(
+        key: args.key,
+        guardCallback: args.guardCallback,
+      );
     },
   );
+}
+
+class CameraPermissionRouteArgs {
+  const CameraPermissionRouteArgs({this.key, required this.guardCallback});
+
+  final _i8.Key? key;
+
+  final _i9.GuardCallback guardCallback;
+
+  @override
+  String toString() {
+    return 'CameraPermissionRouteArgs{key: $key, guardCallback: $guardCallback}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CameraPermissionRouteArgs) return false;
+    return key == other.key && guardCallback == other.guardCallback;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ guardCallback.hashCode;
 }
 
 /// generated route for
 /// [_i2.HomePage]
 class HomeRoute extends _i7.PageRouteInfo<void> {
   const HomeRoute({List<_i7.PageRouteInfo>? children})
-      : super(HomeRoute.name, initialChildren: children);
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -63,10 +101,10 @@ class LoginRoute extends _i7.PageRouteInfo<LoginRouteArgs> {
     required _i9.GuardCallback guardCallback,
     List<_i7.PageRouteInfo>? children,
   }) : super(
-          LoginRoute.name,
-          args: LoginRouteArgs(key: key, guardCallback: guardCallback),
-          initialChildren: children,
-        );
+         LoginRoute.name,
+         args: LoginRouteArgs(key: key, guardCallback: guardCallback),
+         initialChildren: children,
+       );
 
   static const String name = 'LoginRoute';
 
@@ -106,7 +144,7 @@ class LoginRouteArgs {
 /// [_i4.SignInPage]
 class SignInRoute extends _i7.PageRouteInfo<void> {
   const SignInRoute({List<_i7.PageRouteInfo>? children})
-      : super(SignInRoute.name, initialChildren: children);
+    : super(SignInRoute.name, initialChildren: children);
 
   static const String name = 'SignInRoute';
 
@@ -122,7 +160,7 @@ class SignInRoute extends _i7.PageRouteInfo<void> {
 /// [_i5.SignoutPage]
 class SignoutRoute extends _i7.PageRouteInfo<void> {
   const SignoutRoute({List<_i7.PageRouteInfo>? children})
-      : super(SignoutRoute.name, initialChildren: children);
+    : super(SignoutRoute.name, initialChildren: children);
 
   static const String name = 'SignoutRoute';
 
@@ -138,7 +176,7 @@ class SignoutRoute extends _i7.PageRouteInfo<void> {
 /// [_i6.TakePhotoPage]
 class TakePhotoRoute extends _i7.PageRouteInfo<void> {
   const TakePhotoRoute({List<_i7.PageRouteInfo>? children})
-      : super(TakePhotoRoute.name, initialChildren: children);
+    : super(TakePhotoRoute.name, initialChildren: children);
 
   static const String name = 'TakePhotoRoute';
 

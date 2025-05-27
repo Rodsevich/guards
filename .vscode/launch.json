@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch example [development]",
+            "name": "Launch minimal example [development]",
             "request": "launch",
             "type": "dart",
-            "cwd": "example/",
+            "cwd": "example/minimal",
+            "program": "lib/main.dart",
+        },
+        {
+            "name": "Launch complex BLoC example [development]",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "example/complex_bloc/",
             "program": "lib/main_development.dart",
             "args": [
                 "--target",
@@ -16,10 +23,10 @@
             ]
         },
         {
-            "name": "Launch example [staging]",
+            "name": "Launch complex BLoC example [staging]",
             "request": "launch",
             "type": "dart",
-            "cwd": "example/",
+            "cwd": "example/complex_bloc/",
             "program": "lib/main_staging.dart",
             "args": [
                 "--target",
@@ -27,10 +34,10 @@
             ]
         },
         {
-            "name": "Launch example [production]",
+            "name": "Launch complex BLoC example [production]",
             "request": "launch",
             "type": "dart",
-            "cwd": "example/",
+            "cwd": "example/complex_bloc/",
             "program": "lib/main_production.dart",
             "args": [
                 "--target",

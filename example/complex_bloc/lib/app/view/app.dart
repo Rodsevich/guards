@@ -6,7 +6,6 @@ import 'package:guard_example/bootstrap.dart';
 import 'package:guard_example/features/login/login.dart';
 import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
 import 'package:guard_example/l10n/arb/app_localizations.dart';
-import 'package:guard_example/l10n/l10n.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,12 +15,8 @@ class App extends StatelessWidget {
     final appRouter = AppRouter(exampleGuards);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => LoginBloc(),
-        ),
-        BlocProvider(
-          create: (context) => CameraPermissionBloc(),
-        ),
+        BlocProvider(create: (context) => LoginBloc()),
+        BlocProvider(create: (context) => CameraPermissionBloc()),
       ],
       child: MaterialApp.router(
         theme: ThemeData(
@@ -33,8 +28,10 @@ class App extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         routerConfig: appRouter.config(
-          reevaluateListenable:
-              ReevaluateListenable.stream(exampleGuards.guardListenableStream),
+          reevaluateListenable: null,
+          // ReevaluateListenable.stream(
+          //   exampleGuards.guardListenableStream,
+          // ),
         ),
       ),
     );
