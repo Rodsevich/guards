@@ -1,9 +1,62 @@
 # Guards
-
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
 [![License: MIT][license_badge]][license_link]
 
+## Setup 🚧
+
+1️⃣ `flutter pub add guards`  
+2️⃣ Create `lib/core/guards/base.dart` with your project settings
+
+```dart
+abstract base class MyProjectGuard extends GuardBase {
+    //none of the project guards will require a special persistenceDelegate, so we cut down that possibility project-wide with this code
+    MyProjectGuard() : super(persistenceDelegate: null);
+}
+```
+
+3️⃣ Create your guards like `lib/core/guards/login_guard.dart`
+
+```dart
+class GuardLogin extends MyProjectGuard{
+    ///Implement every field
+}
+
+```
+
+4️⃣ Define your project's guards in a GuardsSystem of your project:
+
+```dart
+class MyProjectGuards extends Guards {
+  MyProjectGuards({required this.gpsActive})
+    : super(persistenceDelegate: null, initialGuards: [gpsActive]);
+
+  // define the guards you want to use in your app like this as much as possible for simplicity and ease of use
+  final GuardGpsActive gpsActive;
+
+  // if for some reason you want to have a guard that can't be initialized at the start of the app, you can use this technique instead
+  GuardGeolocationPermission get geolocationPermission =>
+      getGuardByGuardIdentifier('geolocation_permission');
+}
+```
+
+5️⃣ Create the pages that will be used for redirection when guards aren't satisfied
+
+🔀 This package tries to be agnostic in the routing solution of your choice, but here are the vicissitudes for every solution you could have
+
+### auto_route
+
+6️⃣ Add your guard system to your MaterialApp router
+
+### go_router
+
+TBD
+
+### vanilla
+
+TBD
+
+###
 
 ---
 

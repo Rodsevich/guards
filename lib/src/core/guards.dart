@@ -12,10 +12,8 @@ part 'guard_status_change.dart';
 class Guards<T extends GuardBase> {
   /// The guy in charge of your system-wide guards. Everything you should use for
   /// guards should be here
-  Guards({
-    required this.persistenceDelegate,
-    required List<T> initialGuards,
-  }) : guards = initialGuards;
+  Guards({required this.persistenceDelegate, required List<T> initialGuards})
+    : guards = initialGuards;
 
   static final _controller = StreamController<GuardsStatusChange>();
 
@@ -30,9 +28,7 @@ class Guards<T extends GuardBase> {
   /// here contains all the necessary for being setup, otherwise add them later
   /// with `addGuard`
   Future<void> init() async {
-    await Future.wait(
-      guards.map(_setUpGuard),
-    );
+    await Future.wait(guards.map(_setUpGuard));
   }
 
   /// Call this when you are ready to add a guard that weren't able during
@@ -62,15 +58,12 @@ class Guards<T extends GuardBase> {
   /// The way of obtaining guard through its identifier
   R getGuardByGuardIdentifier<R extends T>(String identifier) {
     final guard = guards
-        .where(
-          (guard) => guard.guardIdentifier == identifier,
-        )
+        .where((guard) => guard.guardIdentifier == identifier)
         .singleOrNull;
     if (guard == null) throw NonExistentGuard(identifier);
     return guard as R;
   }
 
   /// Define this in your App's routerConfig's reevaluateListenable
-  Stream<GuardsStatusChange> get guardListenableStream =>
-      _controller.stream.distinct();
+  Stream<GuardsStatusChange> get guardListenableStream => _controller.stream;
 }

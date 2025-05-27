@@ -35,7 +35,7 @@ abstract class GuardBase {
   /// A stream that could be listened to for changes in the guard's status.
   /// This stream will emit new values only when the guard's status _changes_,
   /// i.e., when the value emitted is different from the previous one.
-  Stream<bool> get changeNotifier => _notifier.stream.distinct();
+  Stream<bool> get changeNotifier => _notifier.stream;
 
   /// Define the necessary for the guard to work. The return value must declare
   /// whether the guard is satisfied or not according to that setup
@@ -59,15 +59,17 @@ abstract class GuardBase {
   /// This will also update the persistence delegate if it is not null.
   @mustCallSuper
   Future<bool> update({required bool isSatisfied}) async {
+    _notifier.add(isSatisfied);
     if (isSatisfied == _currentStatus) {
       return _currentStatus; // No change, return current status
     }
     _currentStatus = isSatisfied;
     if (persistenceDelegate != null) {
-      await persistenceDelegate!
-          .updateGuardStatus(guardIdentifier, isSatisfied);
+      await persistenceDelegate!.updateGuardStatus(
+        guardIdentifier,
+        isSatisfied,
+      );
     }
-    _notifier.add(isSatisfied);
     return isSatisfied;
   }
 
