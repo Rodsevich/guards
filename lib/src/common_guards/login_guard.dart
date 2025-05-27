@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:guards/guards.dart';
 import 'package:guards/src/delegates/login_delegate.dart';
 
@@ -5,7 +7,7 @@ import 'package:guards/src/delegates/login_delegate.dart';
 /// A guard that checks if the user is logged in.
 /// If not, it redirects to the [loginPath].
 /// {@endtemplate}
-final class LoginGuard extends GuardBase {
+class LoginGuard extends GuardBase {
   /// {@macro login_guard}
   LoginGuard({required this.loginPath})
       : super(persistenceDelegate: LoginPersistenceDelegate());
@@ -29,8 +31,13 @@ final class LoginGuard extends GuardBase {
     await persistenceDelegate!.updateGuardStatus(guardIdentifier, isLoggedIn);
     return isLoggedIn;
   }
+
   /// Simulates a login check.
   Future<bool> _simulateLoginCheck() async {
     return false;
   }
+
+  @override
+  // TODO: implement checkIfSatisfied
+  FutureOr<bool> get checkIfSatisfied => _simulateLoginCheck();
 }

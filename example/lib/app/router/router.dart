@@ -17,24 +17,29 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, initial: true, path: HomePage.path),
-        AutoRoute(
-          page: LoginRoute.page,
-          path: LoginPage.path,
-          children: [
-            AutoRoute(page: SignInRoute.page, path: SignInPage.path),
-            AutoRoute(page: SignoutRoute.page, path: SignoutPage.path),
-          ],
+    AutoRoute(page: HomeRoute.page, initial: true, path: HomePage.path),
+    AutoRoute(
+      page: LoginRoute.page,
+      path: LoginPage.path,
+      children: [
+        AutoRoute(page: SignInRoute.page, path: SignInPage.path),
+        AutoRoute(page: SignoutRoute.page, path: SignoutPage.path),
+      ],
+    ),
+    AutoRoute(
+      page: CameraPermissionRoute.page,
+      path: CameraPermissionPage.path,
+    ),
+    AutoRoute(
+      page: TakePhotoRoute.page,
+      path: TakePhotoPage.path,
+      guards: [
+        // exampleGuards.photographerPass.toAutoRouteGuard(),
+        // exampleGuards.camera.toAutoRouteGuard(),
+        exampleGuards.login.toAutoRouteGuard(
+          (GuardCallback gc) => LoginRoute(guardCallback: gc),
         ),
-        AutoRoute(
-            page: CameraPermissionRoute.page, path: CameraPermissionPage.path),
-        AutoRoute(
-          page: TakePhotoRoute.page,
-          path: TakePhotoPage.path,
-          guards: [
-            exampleGuards.camera.toAutoRouteGuard(),
-            exampleGuards.login.toAutoRouteGuard(),
-          ],
-        ),
-      ];
+      ],
+    ),
+  ];
 }

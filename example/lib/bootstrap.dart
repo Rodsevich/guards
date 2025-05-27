@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:guard_example/core/guards/example_guard.dart';
+import 'package:guard_example/core/guards/photographer_pass_guard.dart';
 import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
@@ -36,10 +37,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   exampleGuards = ExampleGuards(
-    persistenceDelegate: InMemorypersistenceDelegate(),
+    persistenceDelegate: InMemoryPersistenceDelegate(),
     initialGuards: [
       CameraGuard(cameraPermissionPath: CameraPermissionPage.path),
       LoginGuard(loginPath: LoginPage.path),
+      PhotographerPassGuard(),
     ],
   );
 
@@ -49,7 +51,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runApp(await builder());
 }
 
-class InMemorypersistenceDelegate extends PersistenceDelegate {
+class InMemoryPersistenceDelegate extends PersistenceDelegate {
   static final Map<String, bool> _memory = {};
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:guards/guards.dart';
 import 'package:guards/src/delegates/camera_delegate.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -6,7 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 /// A guard that checks if the camera permission is granted.
 /// If not, it redirects to the [cameraPermissionPath].
 /// {@endtemplate}
-final class CameraGuard extends GuardBase {
+class CameraGuard extends GuardBase {
   /// Creates a [CameraGuard] instance.
   ///
   /// The [cameraPermissionPath] is used for redirecting
@@ -40,10 +42,14 @@ final class CameraGuard extends GuardBase {
     );
     return hasPermission;
   }
+
+  @override
+  FutureOr<bool> get checkIfSatisfied => checkCameraPermission();
 }
 
 /// Checks if the camera permission is granted.
 Future<bool> checkCameraPermission() async {
+  return false;
   final status = await Permission.camera.status;
   return status.isGranted;
 }

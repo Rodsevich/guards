@@ -1,4 +1,4 @@
-
+import 'package:guard_example/core/guards/photographer_pass_guard.dart';
 import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
 import 'package:guards/guards.dart';
@@ -10,13 +10,10 @@ class ExampleGuards extends Guards<GuardBase> with _$ExampleGuards {
   });
 }
 
-// TODO(Nico): exatraer a un generador
+// TODO(Nico): extraer a un generador
 mixin _$ExampleGuards on Guards<GuardBase> {
-  CameraGuard get camera => getGuardByGuardIdentifier(
-        CameraGuard(cameraPermissionPath: CameraPermissionPage.path)
-            .guardIdentifier,
-      );
-  LoginGuard get login => getGuardByGuardIdentifier(
-        LoginGuard(loginPath: LoginPage.path).guardIdentifier,
-      );
+  CameraGuard get camera => getGuardByGuardIdentifier('camera');
+  LoginGuard get login => getGuardByGuardIdentifier('login');
+  PhotographerPassGuard get photographerPass =>
+      getGuardByGuardIdentifier('photographer_pass');
 }

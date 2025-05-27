@@ -42,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
       listener: (context, state) async {
         switch (state) {
           case TakePhotoNavigationState():
-            await context.router.pushNamed(TakePhotoPage.path);
+            await context.router.navigatePath(TakePhotoPage.path);
         }
       },
       child: BlocBuilder<HomeBloc, HomeState>(
