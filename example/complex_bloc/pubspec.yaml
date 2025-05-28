@@ -1,0 +1,33 @@
+name: guard_example
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  bloc: ^9.0.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  flutter_localizations:
+    sdk: flutter
+  app_guards:
+    path: ../../
+  auto_route: ^10.1.0
+  equatable: ^2.0.5
+  url_strategy: ^0.3.0
+
+dev_dependencies:
+  auto_route_generator: ^10.1.0
+  bloc_test: ^10.0.0
+  build_runner: ^2.4.13
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^8.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
