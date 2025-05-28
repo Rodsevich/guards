@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/app/router/router.gr.dart';
 
 import 'package:guard_example/features/login/login.dart';
-import 'package:guards/auto_route.dart';
+import 'package:app_guards/auto_route.dart';
 
 @RoutePage()
 class LoginPage extends AutoRouteGuardSatisfyingPage {
@@ -30,10 +30,7 @@ class LoginView extends StatelessWidget {
       builder: (context, state) {
         return const AutoTabsScaffold(
           backgroundColor: Colors.yellow,
-          routes: [
-            SignInRoute(),
-            SignoutRoute(),
-          ],
+          routes: [SignInRoute(), SignoutRoute()],
         );
       },
     );

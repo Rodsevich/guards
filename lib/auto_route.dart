@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 
 /// {@template auto_route_extension_guard_base}
 /// This extension is for converting your project's guards into

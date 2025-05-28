@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:guards/src/delegates/persistence_delegate.dart';
-import 'package:guards/src/errors.dart';
+import 'package:app_guards/src/delegates/persistence_delegate.dart';
+import 'package:app_guards/src/errors.dart';
 
 part 'guard_base.dart';
 part 'guard_status_change.dart';

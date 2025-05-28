@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:guards/auto_route.dart';
+import 'package:app_guards/auto_route.dart';
 import 'package:minimal/app/router/router.gr.dart';
 import 'package:minimal/core/guards/base.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
-import 'package:guards/auto_route.dart';
+import 'package:app_guards/auto_route.dart';
 
 @RoutePage()
 class CameraPermissionPage extends AutoRouteGuardSatisfyingPage {

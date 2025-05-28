@@ -1,5 +1,5 @@
 import 'package:guard_example/core/guards/photographer_pass_guard.dart';
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 
 class ExampleGuards extends Guards<GuardBase> with _$ExampleGuards {
   ExampleGuards({

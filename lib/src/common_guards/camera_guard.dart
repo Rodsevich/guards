@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:guards/guards.dart';
-import 'package:guards/src/delegates/camera_delegate.dart';
+import 'package:app_guards/guards.dart';
+import 'package:app_guards/src/delegates/camera_delegate.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 ///{@template camera_guard}
@@ -18,9 +18,9 @@ class CameraGuard extends GuardBase {
     required this.cameraPermissionPath,
     CameraPersistenceDelegate? persistenceDelegate,
   }) : super(
-          persistenceDelegate:
-              persistenceDelegate ?? CameraPersistenceDelegate(),
-        );
+         persistenceDelegate:
+             persistenceDelegate ?? CameraPersistenceDelegate(),
+       );
 
   /// The path to redirect if the camera permission is not granted.
   final String cameraPermissionPath;

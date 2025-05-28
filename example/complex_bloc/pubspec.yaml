@@ -13,7 +13,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
-  guards:
+  app_guards:
     path: ../../
   auto_route: ^10.1.0
   equatable: ^2.0.5

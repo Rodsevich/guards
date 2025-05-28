@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 
 //TODO: Agregar esta guarda
 class PhotographerPassGuard extends GuardBase {

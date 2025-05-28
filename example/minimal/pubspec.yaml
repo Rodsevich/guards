@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   geolocator: ^14.0.1
-  guards:
+  app_guards:
     path: ../../
   auto_route: ^10.1.0
 

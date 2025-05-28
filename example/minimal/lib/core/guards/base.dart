@@ -1,4 +1,4 @@
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 import 'package:minimal/core/guards/geolocation_permission_guard.dart';
 import 'package:minimal/core/guards/gps_active_guard.dart';
 

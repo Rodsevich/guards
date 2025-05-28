@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:guards/guards.dart';
-import 'package:guards/src/delegates/login_delegate.dart';
+import 'package:app_guards/guards.dart';
+import 'package:app_guards/src/delegates/login_delegate.dart';
 
 /// {@template login_guard}
 /// A guard that checks if the user is logged in.
@@ -10,7 +10,7 @@ import 'package:guards/src/delegates/login_delegate.dart';
 class LoginGuard extends GuardBase {
   /// {@macro login_guard}
   LoginGuard({required this.loginPath})
-      : super(persistenceDelegate: LoginPersistenceDelegate());
+    : super(persistenceDelegate: LoginPersistenceDelegate());
 
   /// Creates a [LoginGuard] instance.
   final String loginPath;

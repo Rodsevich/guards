@@ -1,4 +1,4 @@
-import 'package:guards/src/delegates/persistence_delegate.dart';
+import 'package:app_guards/src/delegates/persistence_delegate.dart';
 
 ///{@template camera_persistence_delegate}
 /// A mock of a custom delegate that mocks a camera permission.

@@ -7,7 +7,7 @@ import 'package:guard_example/core/guards/example_guard.dart';
 import 'package:guard_example/core/guards/photographer_pass_guard.dart';
 import 'package:guard_example/features/login/view/login_page.dart';
 import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart';
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 late ExampleGuards exampleGuards;

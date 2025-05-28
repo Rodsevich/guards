@@ -1,4 +1,4 @@
-import 'package:guards/guards.dart';
+import 'package:app_guards/guards.dart';
 
 /// guard your pages with this
 class Guarded {

@@ -21,7 +21,7 @@ import 'package:guard_example/features/permisions/camera_permission/view/camera_
     as _i1;
 import 'package:guard_example/features/take_photo/view/take_photo_page.dart'
     as _i6;
-import 'package:guards/auto_route.dart' as _i9;
+import 'package:app_guards/auto_route.dart' as _i9;
 
 /// generated route for
 /// [_i1.CameraPermissionPage]
