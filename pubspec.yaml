@@ -1,0 +1,20 @@
+name: guards
+description: A solution for adding guards to your Flutter app's navigation easily.
+version: 0.1.0+1
+repository: https://gitlab.com/Rodsevich/guards
+
+environment:
+  sdk: ^3.8.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_route: ^10.1.0
+  permission_handler: ^12.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^8.0.0
