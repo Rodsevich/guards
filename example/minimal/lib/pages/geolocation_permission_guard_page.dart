@@ -10,7 +10,7 @@ class PageGeolocationPermissionGuard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[50],
+      backgroundColor: Colors.red[100],
       appBar: AppBar(
         title: const Text('Geolocation Permission Page'),
         automaticallyImplyLeading: false,
@@ -48,17 +48,7 @@ class PageGeolocationPermissionGuard extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              minimalExampleGuards.geolocationPermission.update(
-                isSatisfied: true,
-              );
-            },
-            child: Text(
-              '"Concede" permission (just bypass the guard for testing without conceding permission)',
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Geolocator.openLocationSettings().then((value) {
+              Geolocator.openAppSettings().then((value) {
                 context.router.reevaluateGuards();
               });
             },

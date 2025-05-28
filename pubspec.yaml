@@ -1,5 +1,5 @@
 name: guards
-description: A Very Good Project created by Very Good CLI.
+description: A solution for adding guards to your Flutter app's navigation easily.
 version: 0.1.0+1
 publish_to: none
 

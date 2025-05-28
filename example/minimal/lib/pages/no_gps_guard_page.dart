@@ -10,7 +10,10 @@ class PageGpsNotActiveGuard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red[200],
-      appBar: AppBar(title: const Text('No GPS Guard Page')),
+      appBar: AppBar(
+        title: const Text('No GPS Guard Page'),
+        automaticallyImplyLeading: false,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

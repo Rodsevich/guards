@@ -25,7 +25,7 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     //Guards
-    AutoRoute(page: RouteGeolocationPermissionGuard.page),
     AutoRoute(page: RouteGpsNotActiveGuard.page),
+    AutoRoute(page: RouteGeolocationPermissionGuard.page),
   ];
 }

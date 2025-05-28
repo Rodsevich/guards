@@ -15,7 +15,7 @@ class Guards<T extends GuardBase> {
   Guards({required this.persistenceDelegate, required List<T> initialGuards})
     : guards = initialGuards;
 
-  static final _controller = StreamController<GuardsStatusChange>();
+  static final _controller = StreamController<GuardsStatusChange>.broadcast();
 
   /// The delegate that will be used for checking the guards in memory, leave
   /// it null if you want the guards to be checked on demand, always
@@ -65,5 +65,6 @@ class Guards<T extends GuardBase> {
   }
 
   /// Define this in your App's routerConfig's reevaluateListenable
-  Stream<GuardsStatusChange> get guardListenableStream => _controller.stream;
+  Stream<GuardsStatusChange> get guardListenableStream =>
+      _controller.stream.distinct();
 }
