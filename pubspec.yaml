@@ -1,6 +1,6 @@
 name: guards
 description: A solution for adding guards to your Flutter app's navigation easily.
-version: 0.1.0+1
+version: 0.1.0
 repository: https://gitlab.com/Rodsevich/guards
 
 environment:
