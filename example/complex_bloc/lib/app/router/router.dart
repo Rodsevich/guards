@@ -36,7 +36,7 @@ class AppRouter extends RootStackRouter {
       guards: [
         // exampleGuards.photographerPass.toAutoRouteGuard(),
         // exampleGuards.camera.toAutoRouteGuard(),
-        exampleGuards.login.toAutoRouteGuard(
+        exampleGuards.login.toAutoRouteGuardLocal(
           (GuardCallback gc) => LoginRoute(guardCallback: gc),
         ),
       ],

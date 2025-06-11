@@ -10,19 +10,29 @@ class AppRouter extends RootStackRouter {
   final MinimalExampleGuards exampleGuards;
 
   @override
+  List<AutoRouteGuard> get guards => [
+    exampleGuards.gpsActive.toAutoRouteGuardGlobal(
+      (GuardCallback gc) => RouteGpsNotActiveGuard(),
+    ),
+    exampleGuards.geolocationPermission.toAutoRouteGuardGlobal(
+      (GuardCallback gc) => RouteGeolocationPermissionGuard(),
+    ),
+  ];
+
+  @override
   List<AutoRoute> get routes => [
     AutoRoute(
       page: RouteHome.page,
       initial: true,
       path: '/',
-      guards: [
-        exampleGuards.gpsActive.toAutoRouteGuard(
-          (GuardCallback gc) => RouteGpsNotActiveGuard(),
-        ),
-        exampleGuards.geolocationPermission.toAutoRouteGuard(
-          (GuardCallback gc) => RouteGeolocationPermissionGuard(),
-        ),
-      ],
+      // guards: [
+      //   exampleGuards.gpsActive.toAutoRouteGuardDeRuta(
+      //     (GuardCallback gc) => RouteGpsNotActiveGuard(),
+      //   ),
+      //   exampleGuards.geolocationPermission.toAutoRouteGuardDeRuta(
+      //     (GuardCallback gc) => RouteGeolocationPermissionGuard(),
+      //   ),
+      // ],
     ),
     //Guards
     AutoRoute(page: RouteGpsNotActiveGuard.page),

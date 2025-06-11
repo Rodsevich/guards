@@ -10,7 +10,7 @@ import 'package:app_guards/guards.dart';
 /// {@endtemplate}
 extension AutoRouteExtensionGuardBase on GuardBase {
   /// Converts your project's guard into an auto_route guard
-  AutoRouteGuard toAutoRouteGuard<T extends PageRouteInfo>(
+  AutoRouteGuard toAutoRouteGuardLocal<T extends PageRouteInfo>(
     GuardedRouteGeneratingFunction<T> redirect,
   ) {
     return GuardsAutoRouteGuard(this, redirect);
@@ -26,6 +26,28 @@ extension AutoRouteExtensionGuardBase on GuardBase {
     //     }
     //   },
     // );
+  }
+
+  //TODO(Hans): q ande con esto
+  AutoRouteGuard toAutoRouteGuardGlobal<T extends PageRouteInfo>(
+    GuardedRouteGeneratingFunction<T> redirect,
+  ) {
+    return GuardsAutoRouteGuard(this, redirect);
+    //   AutoRouteGuard.simple((resolver, router) {
+    //       if(isAuthenticated || resolver.routeName == LoginRoute.name) {
+    //         // we continue navigation
+    //         resolver.next();
+    //       } else {
+    //         // else we navigate to the Login page so we get authenticated
+
+    //         // tip: use resolver.redirectUntil to have the redirected route
+    //         // automatically removed from the stack when the resolver is completed
+    //         resolver.redirectUntil(LoginRoute(onResult: (didLogin) => resolver.next(didLogin)));
+    //       }
+    //     },
+    //   ),
+    //   // add more guards here
+    // ];
   }
 }
 
@@ -50,7 +72,7 @@ final class GuardsAutoRouteGuard extends AutoRouteGuard {
   ) async {
     bool isSatisfied = await guard.checkIfSatisfied;
     if (isSatisfied) {
-      resolver.next(true);
+      if (false == resolver.isResolved) resolver.next(true);
     } else {
       await resolver.redirectUntil(
         redirectRoute(({required bool isSatisfied}) async {
