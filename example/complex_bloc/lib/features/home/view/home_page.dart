@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/features/home/home.dart';
 import 'package:guard_example/features/login/login.dart';
-import 'package:guard_example/features/permisions/camera_permission/bloc/camera_permission_bloc.dart';
+import 'package:guard_example/features/permissions/camera_permission/bloc/camera_permission_bloc.dart';
 import 'package:guard_example/features/take_photo/view/take_photo_page.dart';
 
 @RoutePage()
@@ -16,12 +16,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => HomeBloc(),
-        ),
-        BlocProvider(
-          create: (context) => CameraPermissionBloc(),
-        ),
+        BlocProvider(create: (_) => HomeBloc()),
+        BlocProvider(create: (context) => CameraPermissionBloc()),
       ],
       child: const HomeView(),
     );
@@ -70,9 +66,9 @@ class _HomeViewState extends State<HomeView> {
                     const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
-                        context
-                            .read<CameraPermissionBloc>()
-                            .add(CameraPermissionEventRevokePermission());
+                        context.read<CameraPermissionBloc>().add(
+                          CameraPermissionEventRevokePermission(),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -82,9 +78,9 @@ class _HomeViewState extends State<HomeView> {
                     const SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
-                        context
-                            .read<LoginBloc>()
-                            .add(const LoginEventSignOut());
+                        context.read<LoginBloc>().add(
+                          const LoginEventSignOut(),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,

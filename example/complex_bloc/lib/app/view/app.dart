@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guard_example/app/router/router.dart';
 import 'package:guard_example/bootstrap.dart';
 import 'package:guard_example/features/login/login.dart';
-import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
+import 'package:guard_example/features/permissions/camera_permission/camera_permission.dart';
 import 'package:guard_example/l10n/arb/app_localizations.dart';
 
 class App extends StatelessWidget {
@@ -28,7 +27,7 @@ class App extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         routerConfig: appRouter.config(
-          reevaluateListenable: null,
+          // reevaluateListenable: null,
           // ReevaluateListenable.stream(
           //   exampleGuards.guardListenableStream,
           // ),

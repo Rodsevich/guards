@@ -38,6 +38,6 @@ class LoginGuard extends GuardBase {
   }
 
   @override
-  // TODO: implement checkIfSatisfied
+  // TODO(Nico): implement checkIfSatisfied
   FutureOr<bool> get checkIfSatisfied => _simulateLoginCheck();
 }

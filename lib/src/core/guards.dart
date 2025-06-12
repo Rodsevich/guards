@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:app_guards/src/delegates/persistence_delegate.dart';
 import 'package:app_guards/src/errors.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'guard_base.dart';
 part 'guard_status_change.dart';
@@ -10,8 +10,8 @@ part 'guard_status_change.dart';
 /// The guy in charge of your system-wide guards. Everything you should use for
 /// guards should be here
 class Guards<T extends GuardBase> {
-  /// The guy in charge of your system-wide guards. Everything you should use for
-  /// guards should be here
+  /// The guy in charge of your system-wide guards. Everything you should use
+  /// for guards should be here
   Guards({required this.persistenceDelegate, required List<T> initialGuards})
     : guards = initialGuards;
 

@@ -49,7 +49,7 @@ class CameraGuard extends GuardBase {
 
 /// Checks if the camera permission is granted.
 Future<bool> checkCameraPermission() async {
-  return false;
+  // return false;s
   final status = await Permission.camera.status;
   return status.isGranted;
 }

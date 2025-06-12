@@ -1,13 +1,12 @@
+import 'package:app_guards/auto_route.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:guard_example/features/permisions/camera_permission/camera_permission.dart';
-import 'package:app_guards/auto_route.dart';
+import 'package:guard_example/features/permissions/camera_permission/camera_permission.dart';
 
 @RoutePage()
 class CameraPermissionPage extends AutoRouteGuardSatisfyingPage {
-  const CameraPermissionPage({super.key, required super.guardCallback});
+  const CameraPermissionPage({required super.guardCallback, super.key});
 
   static const String path = '/permissions/camera';
 

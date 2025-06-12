@@ -17,7 +17,7 @@ import 'package:guard_example/features/login/signin/view/signin_page.dart'
 import 'package:guard_example/features/login/signout/view/signout_page.dart'
     as _i5;
 import 'package:guard_example/features/login/view/login_page.dart' as _i3;
-import 'package:guard_example/features/permisions/camera_permission/view/camera_permission_page.dart'
+import 'package:guard_example/features/permissions/camera_permission/view/camera_permission_page.dart'
     as _i1;
 import 'package:guard_example/features/take_photo/view/take_photo_page.dart'
     as _i6;

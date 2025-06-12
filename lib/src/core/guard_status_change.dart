@@ -4,16 +4,17 @@ part of 'guards.dart';
 /// The event that will be emitted when a guard status changes.
 /// Now tracks a sorted list of guards and their status.
 /// {@endtemplate}
+@immutable
 class GuardsStatusChange {
   ///{@macro guard_status_change}
   GuardsStatusChange(Map<GuardBase, bool> guardsStatus)
-      : guardsStatus = Map.unmodifiable(
-          Map.fromEntries(
-            guardsStatus.entries.toList()
-              ..sort((a, b) =>
-                  a.key.guardIdentifier.compareTo(b.key.guardIdentifier)),
+    : guardsStatus = Map.unmodifiable(
+        Map.fromEntries(
+          guardsStatus.entries.toList()..sort(
+            (a, b) => a.key.guardIdentifier.compareTo(b.key.guardIdentifier),
           ),
-        );
+        ),
+      );
 
   /// Sorted, unmodifiable map of guards and their status.
   final Map<GuardBase, bool> guardsStatus;

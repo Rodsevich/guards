@@ -19,8 +19,8 @@ abstract class GuardBase {
   GuardBase({required this.persistenceDelegate});
 
   /// The delegate that will be used for checking the guards. If null here, the
-  /// guard system will provide the persistence delegate it has, that can also be
-  /// null; in which case the guard will not persist its status.
+  /// guard system will provide the persistence delegate it has, that can also
+  /// be null; in which case the guard will not persist its status.
   PersistenceDelegate? persistenceDelegate;
 
   /// Leave visible for eventual interaction with sibling guards or custom/complex

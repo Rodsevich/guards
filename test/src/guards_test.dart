@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:app_guards/guards.dart';
-import 'package:app_guards/src/core/guards.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class TestGuards extends Guards {
@@ -17,7 +16,7 @@ void main() {
   // }
 
   group("Guard's Stream", () {
-    // test("the stream doesn't output reports dups", () async {
+    // test("the stream doesn't output reports dupes", () async {
     //   StreamController<GuardStatusChange> streamController =
     //       StreamController<GuardStatusChange>();
     //   final guards = TestGuards();

@@ -9,7 +9,8 @@ import 'package:app_guards/guards.dart';
 /// auto_route guards
 /// {@endtemplate}
 extension AutoRouteExtensionGuardBase on GuardBase {
-  /// Converts your project's guard into an auto_route guard
+  /// Converts your project's guard into an auto_route guard pretended to be
+  /// used in the router's route definition, _locally_ to that route.
   AutoRouteGuard toAutoRouteGuardLocal<T extends PageRouteInfo>(
     GuardedRouteGeneratingFunction<T> redirect,
   ) {
@@ -28,7 +29,8 @@ extension AutoRouteExtensionGuardBase on GuardBase {
     // );
   }
 
-  //TODO(Hans): q ande con esto
+  /// Converts your project's guard into an auto_route guard pretended to be
+  /// used in the router's guards getter, _globally_ to the whole router
   AutoRouteGuard toAutoRouteGuardGlobal<T extends PageRouteInfo>(
     GuardedRouteGeneratingFunction<T> redirect,
   ) {
@@ -70,15 +72,15 @@ final class GuardsAutoRouteGuard extends AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    bool isSatisfied = await guard.checkIfSatisfied;
+    final isSatisfied = await guard.checkIfSatisfied;
     if (isSatisfied) {
-      if (false == resolver.isResolved) resolver.next(true);
+      if (false == resolver.isResolved) resolver.next();
     } else {
       await resolver.redirectUntil(
         redirectRoute(({required bool isSatisfied}) async {
           if (isSatisfied) {
             await guard.update(isSatisfied: true);
-            resolver.next(true);
+            resolver.next();
           } else {
             resolver.next(false);
           }
@@ -92,14 +94,19 @@ final class GuardsAutoRouteGuard extends AutoRouteGuard {
   }
 }
 
-/// It is used to notify the guard that the user has satisfied the guard's requirements.
+/// It is used to notify the guard that the user has satisfied the guard's
+/// requirements.
 /// This callback is used to update the guard's state and continue navigation.
-/// It is used in the [AutoRouteGuardSatisfyingPage] to notify the guard that the user has satisfied the guard's requirements.
-/// It is also used in the [GuardsAutoRouteGuard] to notify the guard that the user has satisfied the guard's requirements.
+/// It is used in the [AutoRouteGuardSatisfyingPage] to notify the guard
+/// that the user has satisfied the guard's requirements.
+/// It is also used in the [GuardsAutoRouteGuard] to notify the guard that the
+/// user has satisfied the guard's requirements.
 typedef GuardCallback = Future<void> Function({required bool isSatisfied});
 
+/// A handy widget for ensuring a guard can be satisfied through the page the
+/// widget draws.
 abstract class AutoRouteGuardSatisfyingPage extends StatelessWidget {
-  const AutoRouteGuardSatisfyingPage({super.key, required this.guardCallback});
+  const AutoRouteGuardSatisfyingPage({required this.guardCallback, super.key});
 
   /// The callback that will be called when the guard is satisfied.
   /// It will both update the guard, notify the router and continue navigation.
