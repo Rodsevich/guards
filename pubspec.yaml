@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  auto_route: ^10.1.0
+  auto_route: ">=10.1.0 <12.0.0"
   permission_handler: ^12.0.0
 
 dev_dependencies:
